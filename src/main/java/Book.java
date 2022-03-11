@@ -1,3 +1,5 @@
+import javax.naming.event.ObjectChangeListener;
+
 public class Book {
 
     String name;
@@ -13,4 +15,18 @@ public class Book {
         this.code = code;
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+
+        if (!(o instanceof Book)) return false;
+
+        Book other = (Book) o;
+
+        return (name == other.name && author == other.author && genre == other.genre && code== other.code);
+
+    }
 }
+

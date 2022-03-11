@@ -14,21 +14,18 @@ import java.util.ArrayList;
 
 public class library {
 
-
     public ArrayList<Book> Library = new ArrayList<>();
 
     public void add(Book book) {
 
-        Library.add(book);
+       Library.add(book);
 
-    }
-
+   }
     public boolean exist(Book book) {
 
         return  Library.contains(book);
 
     }
-
 
     public void del(Book book) {
         if (Library.contains(book)) {
@@ -36,14 +33,14 @@ public class library {
             Library.remove(book);
 
 
-        } else  throw new NullPointerException("Книга не найдена");
+        } else throw new NullPointerException("Книга не найдена");
     }
 
-    public void change(Book book, String rename, String newauthor, String newgenre){
+    public void change(Book book, String rename, String newauthor, String newgenre) {
 
-        if (!Library.contains(book))  throw new NullPointerException("Книга не найдена");;
+        if (!Library.contains(book)) throw new NullPointerException("Книга не найдена");
 
-        if (book.name != rename || book.author != newauthor || book.genre != newgenre ) {
+        if (book.name != rename || book.author != newauthor || book.genre != newgenre) {
 
             Book newbook = new Book(rename, newauthor, newgenre, book.code);
 
@@ -69,7 +66,7 @@ public class library {
 
     public Book search(String name, String author, String genre, String code) {
 
-        if(name == null && author == null && genre == null && code == null ){
+        if (name == null && author == null && genre == null && code == null) {
 
             throw new NullPointerException("Параметры отсутствуют");
 
@@ -88,8 +85,6 @@ public class library {
 
         throw new NullPointerException("Книга не найдена");
     }
-
-
 
 
 }
