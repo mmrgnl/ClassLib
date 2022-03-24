@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class library {
 
-    public ArrayList<Book> Library = new ArrayList<>();
+    private ArrayList<Book> Library = new ArrayList<>();
 
     public void add(Book book) {
 
@@ -28,62 +28,45 @@ public class library {
     }
 
     public void del(Book book) {
+
         if (Library.contains(book)) {
-
             Library.remove(book);
+        } else throw new RuntimeException ("Книга не найдена");
 
-
-        } else throw new NullPointerException("Книга не найдена");
     }
 
     public void change(Book book, String rename, String newauthor, String newgenre) {
 
-        if (!Library.contains(book)) throw new NullPointerException("Книга не найдена");
-
-        if (book.name != rename || book.author != newauthor || book.genre != newgenre) {
-
+        if (!Library.contains(book)) throw new RuntimeException("Книга не найдена");
+        if (!book.name.equals(rename) || !book.author.equals(newauthor) || !book.genre.equals(newgenre)) {
             Book newbook = new Book(rename, newauthor, newgenre, book.code);
-
             Library.set(Library.indexOf(book), newbook);
-
-        } else throw new NullPointerException("Такие параметры уже присвоены данной книге");
+        } else throw new RuntimeException ("Такие параметры уже присвоены данной книге");
 
     }
 
     public void relocate(Book book, String recode) {
 
         if (!Library.contains(book)) throw new NullPointerException("Книга не найдена");
-
-        if (book.code != recode) {
-
+        if (!book.code.equals(recode)) {
             Book newbook = new Book(book.name, book.author, book.genre, recode);
-
             Library.set(Library.indexOf(book), newbook);
-
-        } else throw new NullPointerException("Такой номер уже присвоен данной книге");
+        } else throw new RuntimeException ("Такой номер уже присвоен данной книге");
 
     }
 
     public Book search(String name, String author, String genre, String code) {
 
         if (name == null && author == null && genre == null && code == null) {
-
-            throw new NullPointerException("Параметры отсутствуют");
-
+            throw new RuntimeException ("Параметры отсутствуют");
         }
-
         for (Book book : Library) {
-
-            if ((book.name == name || name == null) && (book.author == author || author == null) &&
-
-                    (book.genre == genre || genre == null) && (book.code == code || code == null)) {
-
+            if ((book.name.equals(name) || name == null) && (book.author.equals(author) || author == null) &&
+                    (book.genre.equals(genre) || genre == null) && (book.code.equals(code) || code == null)) {
                 return book;
             }
-
         }
-
-        throw new NullPointerException("Книга не найдена");
+        throw new RuntimeException ("Книга не найдена");
     }
 
 
